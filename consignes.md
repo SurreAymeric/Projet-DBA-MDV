@@ -110,7 +110,7 @@ Insérer 60 subscriptions (avec plusieurs occurences pour chaque plan) pour des 
 
 ## question 2 : `part_2_2.sql` 
 
-**Créer une vue `subscription_per_plan_per_mon` qui affiche pour chaque plan et chaque mois :**
+**Créer une vue `subscription_per_plan_per_month` qui affiche pour chaque plan et chaque mois :**
 - le total payé par les utilisateurs ayant choisi ce plan
 - le nombre total de subscriptions pour ce plan
 
@@ -185,6 +185,8 @@ Insérer les toutes données (dans la bonne collection à chaque fois).
 
 
 ## question 3
+
+**Peu importe le langage mais inclure le résultat dans le notebook**
 Avec la méthode de votre choix, créer une table ou une collection `time_between_session` avec une colonne (ou un champ) `user_id` et une colonne `time_between_avg` qui contient le temps moyen en seconde entre deux sessions consécutives d'un même utilisateur.
 
 
