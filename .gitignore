@@ -1,0 +1,9 @@
+# pyenv
+.python-version
+
+# Environments
+.env
+venv/
+
+# VSCode
+.vscode/
