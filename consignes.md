@@ -26,11 +26,11 @@ Vous choisirez les types adéquats pour les colonnes, et créerez des colonnes d
 
 **Créer les tables suivantes :**
 
-- `user` : `user_id`, `firstname`, `lastname`, `email`, `username`, `password`, `created_at`
+- `user_table` : `user_id`, `firstname`, `lastname`, `email`, `username`, `password`, `created_at`
 
-- `user_email_verification` : `uev_id`, `user_id`, `verified_at`
+- `user_email_verification_table` : `uev_id`, `user_id`, `verified_at`
 
-- `session` : `session_id`,  `user_id`, `connected_at`
+- `session_table` : `session_id`,  `user_id`, `connected_at`
 
 
 ### b. 
@@ -38,7 +38,7 @@ Vous choisirez les types adéquats pour les colonnes, et créerez des colonnes d
 Ajouter des contraintes sur les colonnes : `username` (doit être unique, plus de 8 caractères), `email` (doit être unique) et `password` (plus de 8 caractères) 
 
 
-**Vérifier que tout fonctionne : `psql -U <user> -d course -f part_1_1.sql`**
+**Vérifier que tout fonctionne : `psql -U <user> -d app_auth -f part_1_1.sql`**
 
 
 ## question 2  `part_1_2.sql` 
@@ -53,14 +53,14 @@ Insérer 100 utilisateurs avec des données crédibles, les comptes ont été cr
 
 ## b.
 
-Insérer 85 vérification d'emails (1 seule par utilisateur max). Les vérifications ne peuvent pas être postérieures à la création du compte. Les valeurs de `verified_at` sont comprises entre le 01/01/2023 et le 30/06/2023.
+Insérer 85 vérification d'emails (1 seule par utilisateur max). Les vérifications ne peuvent pas être antérieures à la création du compte. Les valeurs de `verified_at` sont comprises entre le 01/01/2023 et le 30/06/2023.
 
 ## c.
 
-Insérer 1000 sessions pour des `connected_at` comprises entre le 01/01/2023 et le 30/06/2023. Il doit y avoir des valeurs sur les 6 mois. Les sessions ne peuvent pas être postérieures à la création du compte, ni à la vérification de l'email. 
+Insérer 1000 sessions pour des `connected_at` comprises entre le 01/01/2023 et le 30/06/2023. Il doit y avoir des valeurs sur les 6 mois. Les sessions ne peuvent pas être antérieures à la création du compte, ni à la vérification de l'email. 
 
 
-**Vérifier que tout fonctionne : `psql -U <user> -d course -f part_1_2.sql`**
+**Vérifier que tout fonctionne : `psql -U <user> -d app_auth -f part_1_2.sql`**
 
 
 ## question 3 
@@ -69,26 +69,26 @@ Insérer 1000 sessions pour des `connected_at` comprises entre le 01/01/2023 et 
 
 Créer une vue `session_and_user` qui permet d'afficher toutes les sessions, ainsi que les données des utilisateurs des sessions. Sur une même ligne, on veut voir tous les champs des deux tables.
 
-**Vérifier que tout fonctionne : `psql -U <user> -d course -f part_1_3_a.sql`**
+**Vérifier que tout fonctionne : `psql -U <user> -d app_auth -f part_1_3_a.sql`**
 
 
 ## b. `part_1_3_b.sql`  & `part_1_3_b_view.sql`
 
 (Nécessite probablement une recherche) :  
-Ajouter une colonne `connected_at_month` de type INTEGER à la table `session`, avec le mois de la colonne `connected_at` .
+Ajouter une colonne `connected_at_month` de type INTEGER à la table `session_table`, avec le mois de la colonne `connected_at` .
 
-**Vérifier que tout fonctionne : `psql -U <user> -d course -f part_1_3_b.sql`**
+**Vérifier que tout fonctionne : `psql -U <user> -d app_auth -f part_1_3_b.sql`**
 
 Dans un fichier `part_1_3_b_view.sql` créer une vue `session_per_month` qui permet d'afficher le nombre de sessions par mois.
 
-**Vérifier que tout fonctionne : `psql -U <user> -d course -f part_1_3_b_view.sql`**
+**Vérifier que tout fonctionne : `psql -U <user> -d app_auth -f part_1_3_b_view.sql`**
 
 
 ## c. `part_1_3_c.sql` 
 
 Écrire une vue `very_active_users_may` qui permet d'afficher les `usernames` des users qui ont un nombre de sessions total en mai supérieur à 60 % du nombre moyen de session par utilisateur en mai. 
 
-**Vérifier que tout fonctionne : `psql -U <user> -d course -f part_1_3_c.sql`**
+**Vérifier que tout fonctionne : `psql -U <user> -d app_auth -f part_1_3_c.sql`**
 
 
 # Partie II : Comprendre les données : 
@@ -96,17 +96,17 @@ Dans un fichier `part_1_3_b_view.sql` créer une vue `session_per_month` qui per
 
 ## question 1 : `part_2_1.sql` 
 
-Créer une table `subscription` qui contient les colonnes : 
+Créer une table `subscription_table` qui contient les colonnes : 
 - `subscription_id`
 - `subscribed_at`  (même intervalle de dates que précédemment)
 - `user_id`
 - `paid` (c'est un INTEGER qui vaut 10, 100 ou 1000 en fonction du plan qui suit)
 - `subscription_plan` (qui peut valoir "monthly", "yearly" ou "lifetime").  
 
-Insérer 60 subscriptions (avec plusieurs occurences pour chaque plan) pour des utilisateurs ayant vérifié leur email (on peut imaginer qu'ils ont souscrit depuis une app tierce, et donc il n'est pas nécessaire que les utilisateurs liés apparaissent dans la table de sessions).  Un utilisateur doit apparaître une seule fois maximum dans la table `subscription`. Le fichier doit contenir les 60 clauses INSERT INTO;
+Insérer 60 subscriptions (avec plusieurs occurences pour chaque plan) pour des utilisateurs ayant vérifié leur email (on peut imaginer qu'ils ont souscrit depuis une app tierce, et donc il n'est pas nécessaire que les utilisateurs liés apparaissent dans la table de sessions).  Un utilisateur doit apparaître une seule fois maximum dans la table `subscription_table`. Le fichier doit contenir les 60 clauses INSERT INTO;
 
 
-**Vérifier que tout fonctionne : `psql -U <user> -d course -f part_2_1.sql`**
+**Vérifier que tout fonctionne : `psql -U <user> -d app_auth -f part_2_1.sql`**
 
 ## question 2 : `part_2_2.sql` 
 
@@ -115,13 +115,13 @@ Insérer 60 subscriptions (avec plusieurs occurences pour chaque plan) pour des 
 - le nombre total de subscriptions pour ce plan
 
 
-**Vérifier que tout fonctionne : `psql -U <user> -d course -f part_2_2.sql`**
+**Vérifier que tout fonctionne : `psql -U <user> -d app_auth -f part_2_2.sql`**
 
 
 # Partie III : Comparaison de requêtes `part_3.ipynb` 
 
 ## question 1 
-Créer une table `user_for_comparison` qui contient les mêmes colonnes et admet les mêmes contraintes que la table `user` et y insérer 100 000 lignes (crédibles).
+Créer une table `user_for_comparison` qui contient les mêmes colonnes et admet les mêmes contraintes que la table `user_table` et y insérer 100 000 lignes (crédibles).
 
 
 ## question 2
@@ -144,7 +144,7 @@ Créer une table `session_count` qui contient les colonnes : `session_count_id`,
 Créer un trigger `trigger_update_session_count` afin d'avoir une ligne par utilisateur dans la table `session_count` (seulement si l'utilisateur a au moins une session). La valeur de `session_count_value` doit être égale au nombre total de sessions de l'utilisateur. (On écrira dans la table `session_count` uniquement via le trigger).
 
 
-**Vérifier que tout fonctionne :  `psql -U <user> -d course -f part_1_1.sql`**
+**Vérifier que tout fonctionne :  `psql -U <user> -d app_auth -f part_1_1.sql`**
 
 
 ## question 2 : `part_4_2.sql` 
@@ -159,7 +159,7 @@ Créer une table `username_history` et un trigger `trigger_update_username` :
 - utiliser une clause SELECT sur `username_history` pour vérifier
 
 
-**Vérifier que tout fonctionne :  `psql -U <user> -d course -f part_4_2.sql`**
+**Vérifier que tout fonctionne :  `psql -U <user> -d app_auth -f part_4_2.sql`**
 
 ## question 3 : `part_4_3.ipynb` 
 
