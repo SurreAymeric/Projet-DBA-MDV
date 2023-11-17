@@ -32,7 +32,7 @@ EXECUTE FUNCTION log_username_change();
 
 -- Test avec des INSERT
 INSERT INTO user_table (firstname, lastname, email, username, password, created_at)
-VALUES ('John', 'Doe', 'john.doe@example.com', 'johndoe', 'password123', CURRENT_TIMESTAMP);
+VALUES ('Jo', 'Dop', 'jo.dop@example.com', 'jodop', 'password123', CURRENT_TIMESTAMP);
 
 INSERT INTO user_table (firstname, lastname, email, username, password, created_at)
 VALUES ('Jane', 'Smith', 'jane.smith@example.com', 'janesmith', 'password456', CURRENT_TIMESTAMP);
