@@ -15,7 +15,7 @@ ADD CONSTRAINT username_length_check CHECK (LENGTH(username) > 8),
 ADD CONSTRAINT password_length_check CHECK (LENGTH(password) > 8);
 
 -- Création de la table user_email_verification
-CREATE TABLE user_email_verification (
+CREATE TABLE user_email_verification_table (
     uev_id SERIAL PRIMARY KEY,
     user_id INT,
     verified_at TIMESTAMP,
